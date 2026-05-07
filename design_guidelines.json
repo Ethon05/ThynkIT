@@ -1,0 +1,142 @@
+{
+  "theme": "dark",
+  "archetype": "Swiss & High-Contrast (Dark Mode Variant)",
+  "colors": {
+    "background": {
+      "primary": "#050505",
+      "secondary": "#0A0A0A",
+      "card": "rgba(255, 255, 255, 0.02)",
+      "cardHover": "rgba(255, 255, 255, 0.05)",
+      "nav": "rgba(5, 5, 5, 0.7)"
+    },
+    "text": {
+      "primary": "#FFFFFF",
+      "secondary": "#A3A3A3",
+      "muted": "#525252",
+      "accent": "#00E5FF"
+    },
+    "border": {
+      "default": "rgba(255, 255, 255, 0.1)",
+      "focus": "rgba(0, 229, 255, 0.5)"
+    },
+    "brand": {
+      "primary": "#FFFFFF",
+      "accent": "#00E5FF",
+      "gradient": "linear-gradient(135deg, #00E5FF 0%, #0066FF 100%)"
+    }
+  },
+  "typography": {
+    "fonts": {
+      "heading": "Outfit",
+      "body": "Inter",
+      "mono": "JetBrains Mono"
+    },
+    "scale": {
+      "h1": "text-5xl md:text-6xl lg:text-7xl tracking-tighter font-medium leading-tight",
+      "h2": "text-4xl md:text-5xl tracking-tight font-medium",
+      "h3": "text-2xl md:text-3xl tracking-tight",
+      "h4": "text-lg md:text-xl font-medium",
+      "body": "text-base md:text-lg text-neutral-400 leading-relaxed",
+      "label": "text-xs uppercase tracking-[0.2em] font-mono text-neutral-500"
+    }
+  },
+  "layout": {
+    "spacing": {
+      "section_y": "py-24 md:py-32",
+      "container": "max-w-7xl mx-auto px-6 md:px-12",
+      "gap_sm": "gap-4",
+      "gap_md": "gap-8",
+      "gap_lg": "gap-16 md:gap-24"
+    },
+    "grids": {
+      "bento_hero": "grid grid-cols-1 md:grid-cols-12 gap-6",
+      "services": "grid grid-cols-1 md:grid-cols-3 gap-6",
+      "case_studies": "grid grid-cols-1 md:grid-cols-2 gap-8"
+    },
+    "borders": {
+      "radius_card": "rounded-2xl",
+      "radius_button": "rounded-full"
+    }
+  },
+  "components": {
+    "nav": {
+      "style": "fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#050505]/70 border-b border-white/10 transition-all duration-300",
+      "links": "text-sm text-neutral-300 hover:text-white transition-colors"
+    },
+    "button": {
+      "primary": "bg-white text-black px-6 py-3 rounded-full text-sm font-medium hover:bg-neutral-200 transition-colors",
+      "secondary": "bg-transparent text-white px-6 py-3 rounded-full text-sm font-medium border border-white/20 hover:bg-white/5 transition-colors",
+      "accent": "bg-[#00E5FF] text-black px-6 py-3 rounded-full text-sm font-medium hover:bg-[#00E5FF]/90 transition-colors shadow-[0_0_20px_rgba(0,229,255,0.3)]"
+    },
+    "card": {
+      "style": "bg-white/[0.02] border border-white/10 rounded-2xl p-8 hover:bg-white/[0.04] transition-colors relative overflow-hidden group",
+      "glow": "absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-white/5 to-transparent pointer-events-none transition-opacity duration-500"
+    },
+    "badge": {
+      "style": "inline-flex items-center px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs font-mono text-neutral-300"
+    }
+  },
+  "sections": {
+    "hero": {
+      "layout": "relative min-h-screen flex items-center justify-center pt-24 pb-16 overflow-hidden",
+      "content": "max-w-4xl mx-auto text-center z-10 space-y-8",
+      "background": "absolute inset-0 z-0",
+      "overlay": "absolute inset-0 bg-gradient-to-b from-[#050505]/40 via-[#050505]/60 to-[#050505] z-0"
+    },
+    "marquee": {
+      "style": "py-12 border-y border-white/10 bg-white/[0.01]",
+      "items": "text-neutral-500 font-mono text-sm uppercase tracking-widest mx-12 flex items-center gap-2"
+    },
+    "footer": {
+      "style": "bg-[#050505] border-t border-white/10 pt-24 pb-12",
+      "big_text": "text-[12vw] font-black tracking-tighter text-white/5 leading-none select-none overflow-hidden text-center"
+    }
+  },
+  "media": {
+    "video_hero": {
+      "url": "https://customer-assets.emergentagent.com/job_95b3baa6-214c-4019-a2c6-8593700cfdc0/artifacts/h0xqbi4o_Video_Sequel_Generation.mp4",
+      "description": "Background video for the main hero section."
+    },
+    "logo": {
+      "url": "https://customer-assets.emergentagent.com/job_95b3baa6-214c-4019-a2c6-8593700cfdc0/artifacts/usea778u_logo.png",
+      "description": "Main brand logo to be used in navbar and footer."
+    },
+    "images": {
+      "ai_innovation": {
+        "url": "https://images.unsplash.com/photo-1759735541630-036eefb7cd3a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHw0fHxhYnN0cmFjdCUyMGRhcmslMjB0ZWNobm9sb2d5JTIwYmFja2dyb3VuZCUyMG5lb258ZW58MHx8fHwxNzc4MTcxNjQzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract neon technology background for the AI Showcase section."
+      },
+      "case_study_1": {
+        "url": "https://images.unsplash.com/photo-1771875802948-0d0f3424fe6d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGRhcmslMjB0ZWNobm9sb2d5JTIwYmFja2dyb3VuZCUyMG5lb258ZW58MHx8fHwxNzc4MTcxNjQzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract neon lights for Case Study 1 thumbnail."
+      },
+      "case_study_2": {
+        "url": "https://images.unsplash.com/photo-1762278804729-13d330fad71a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRhcmslMjB0ZWNobm9sb2d5JTIwYmFja2dyb3VuZCUyMG5lb258ZW58MHx8fHwxNzc4MTcxNjQzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract purple and pink lights for Case Study 2 thumbnail."
+      },
+      "case_study_3": {
+        "url": "https://images.unsplash.com/photo-1771875797242-77f69f061132?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzV8MHwxfHNlYXJjaHwyfHxhYnN0cmFjdCUyMGRhcmslMjB0ZWNobm9sb2d5JTIwYmFja2dyb3VuZCUyMG5lb258ZW58MHx8fHwxNzc4MTcxNjQzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract streaks for Case Study 3 thumbnail."
+      }
+    }
+  },
+  "animations": {
+    "fade_in_up": "initial: { opacity: 0, y: 20 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }",
+    "stagger_children": "transition: { staggerChildren: 0.1 }",
+    "hover_card": "whileHover: { y: -5, transition: { duration: 0.2 } }"
+  },
+  "instructions_to_main_agent": [
+    "Install 'lucide-react' for icons if not present.",
+    "Install 'framer-motion' for scroll animations and fluid transitions.",
+    "Install 'react-fast-marquee' for the client logos and tech stack marquees.",
+    "For the Hero section, implement an HTML5 <video> tag in the background with 'autoPlay loop muted playsInline'. Overlay it with a dark gradient so the text is fully legible.",
+    "Never use plain <img> for the logo without styling it; set specific height (e.g., h-8).",
+    "All cards must have a 1px border of 'border-white/10' and use the 'bg-white/[0.02]' background. Avoid solid backgrounds.",
+    "Ensure 'Outfit' font is loaded from Google Fonts for headings, and 'Inter' for body.",
+    "Do NOT use center alignment for the Services grid or Case Studies; use left-alignment to maintain the Swiss Tech aesthetic.",
+    "For the Process Timeline, use a vertical layout with a thin white line on the left, and nodes for each step.",
+    "All interactive elements must have a 'data-testid' attribute (e.g., data-testid='contact-submit').",
+    "For the 'Tech Stack' section, use a marquee with simple lucide-react icons and text (e.g., <Code /> React, <Database /> PostgreSQL) to look abstract and technical.",
+    "The final CTA section should be massive, centered, with an Electric Cyan accent button."
+  ]
+}
