@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, ExternalLink, Quote } from "lucide-react";
+import { useState } from "react";
+import { ArrowUpRight, ExternalLink, Quote, Play } from "lucide-react";
 import { Link } from "react-router-dom";
-import { WEB_PROJECTS, VIDEO_PROJECTS } from "../data/site";
+import { WEB_PROJECTS, VIDEO_PROJECTS, driveThumb } from "../data/site";
+import VideoLightbox from "../components/VideoLightbox";
 
 function WebProjectCard({ p, i }) {
   return (
@@ -50,32 +52,48 @@ function WebProjectCard({ p, i }) {
   );
 }
 
-function VideoCard({ v, i }) {
+export function VideoCard({ v, i, onOpen }) {
+  const [imgError, setImgError] = useState(false);
   return (
-    <motion.div
+    <motion.button
+      type="button"
+      onClick={() => onOpen(v)}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.5, delay: (i % 3) * 0.06 }}
       data-testid={`video-project-${i}`}
-      className="group relative aspect-video bg-[#070707] border border-white/10 hover:border-[#00E5FF]/30 rounded-2xl overflow-hidden transition-all cursor-pointer"
+      className="group relative aspect-video bg-[#070707] border border-white/10 hover:border-[#00E5FF]/30 rounded-2xl overflow-hidden transition-all text-left"
     >
-      <div className="absolute inset-0 grid-bg opacity-40" />
+      {!imgError ? (
+        <img
+          src={driveThumb(v.driveId, 1000)}
+          alt={v.title}
+          loading="lazy"
+          onError={() => setImgError(true)}
+          className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-[1.2s] ease-out"
+        />
+      ) : (
+        <div className="absolute inset-0 grid-bg opacity-40" />
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-tr from-[#00E5FF]/10 via-transparent to-[#0066FF]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="absolute inset-0 grid place-items-center">
-        <div className="w-16 h-16 rounded-full border border-white/20 grid place-items-center group-hover:border-[#00E5FF] group-hover:scale-110 transition-all bg-black/40 backdrop-blur-md">
-          <svg className="w-5 h-5 text-white group-hover:text-[#00E5FF] transition-colors ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
+        <div className="w-16 h-16 rounded-full border border-white/30 grid place-items-center group-hover:border-[#00E5FF] group-hover:scale-110 transition-all bg-black/50 backdrop-blur-md">
+          <Play className="w-5 h-5 text-white group-hover:text-[#00E5FF] transition-colors ml-0.5" fill="currentColor" />
         </div>
       </div>
       <div className="absolute bottom-4 left-4 right-4">
         <p className="font-mono text-[10px] uppercase tracking-wider text-[#00E5FF] mb-1">{v.category}</p>
-        <p className="font-heading text-base md:text-lg font-medium tracking-tight">{v.title}</p>
+        <p className="font-heading text-base md:text-lg font-medium tracking-tight text-white">{v.title}</p>
       </div>
-    </motion.div>
+    </motion.button>
   );
 }
 
 export default function Portfolio() {
+  const [active, setActive] = useState(null);
+
   return (
     <section data-testid="portfolio-section" id="work" className="relative py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6 md:px-10">
@@ -116,16 +134,27 @@ export default function Portfolio() {
           <div className="flex items-center gap-4 mb-8">
             <span className="font-mono text-xs uppercase tracking-[0.25em] text-neutral-500">B · Video Editing & Motion Graphics</span>
             <span className="flex-1 h-px bg-white/10" />
-            <span className="font-mono text-xs text-neutral-600">Reel</span>
+            <span className="font-mono text-xs text-neutral-600">{VIDEO_PROJECTS.length} reels</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {VIDEO_PROJECTS.map((v, i) => <VideoCard key={v.title} v={v} i={i} />)}
+            {VIDEO_PROJECTS.slice(0, 6).map((v, i) => (
+              <VideoCard key={v.driveId} v={v} i={i} onOpen={setActive} />
+            ))}
           </div>
-          <p className="mt-6 text-xs text-neutral-500 font-mono">
-            * Video assets available on request — drop us a note and we'll share the reel.
-          </p>
+          <div className="mt-8 flex justify-center">
+            <Link
+              to="/work"
+              data-testid="portfolio-more-reels-link"
+              className="group inline-flex items-center gap-2 text-sm text-neutral-300 hover:text-[#00E5FF] transition-colors"
+            >
+              Watch the full reel ({VIDEO_PROJECTS.length} videos)
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </div>
+
+      <VideoLightbox video={active} onClose={() => setActive(null)} />
     </section>
   );
 }

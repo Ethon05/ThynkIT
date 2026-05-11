@@ -78,14 +78,28 @@ export const WEB_PROJECTS = [
   { name: "Dollap. — Albanian Marketplace", url: "#" },
 ];
 
+// Real Drive-hosted client videos. Each has a thumbnail (Drive thumbnail API)
+// and an embeddable preview URL.
 export const VIDEO_PROJECTS = [
-  { title: "Brand Launch Reel", category: "Brand Film" },
-  { title: "Product Explainer", category: "Motion Graphics" },
-  { title: "Social Campaign Cuts", category: "Video Editing" },
-  { title: "Founder Interview", category: "Documentary" },
-  { title: "App Walkthrough", category: "UI Motion" },
-  { title: "Event Aftermovie", category: "Cinematic" },
+  { title: "Nikola Tesla", category: "Cinematic Documentary", driveId: "1GmHNW2vXhWKtPWSzFVish47VIZF4kFA5" },
+  { title: "JH Agency", category: "Brand Ad", driveId: "1Qm3NRm23dfeKW7ls0clFs_pgKeRLoE5M" },
+  { title: "Magnet Media", category: "Brand Recreation", driveId: "1rF7eGK4DHC-D6rbzsDymhivbivHyLPCJ" },
+  { title: "MmGen 2", category: "Product Demo", driveId: "1wYJsLcI9AP4-7QpJ_JWJ6buXhfX4SJOP" },
+  { title: "Pixelr Studio", category: "Brand Film", driveId: "1nyaey9FiMs4w60di1SwFB5FG4DFMSS-e" },
+  { title: "Webspark — Reel 1", category: "Ad Campaign", driveId: "1QUaLkQvOGUv4zTCrul4glSh5eutar4H7" },
+  { title: "Webspark — Reel 2", category: "Ad Campaign", driveId: "1_M4xnz9AD3ZEuw5q2w5nLoGdgJmkyFwK" },
+  { title: "Udemy Course Promo", category: "Course Promo", driveId: "1t_01iVece4gJ4T_lB6hpoQNrPvLh7moF" },
+  { title: "JK Reel 4", category: "Social Reel", driveId: "1NvZe8wb-LhB2FbUg3pkc1e3lWb5Y6KvC" },
+  { title: "Atopie", category: "Brand Spot", driveId: "19aQf3F_XPOsxdJk1SL50bQ_MfQh5rUcV" },
+  { title: "AS — Motion Reel", category: "Motion Graphics", driveId: "1wCRO3r9nNQwRvgsJLOq92grpBvkTmS9J" },
+  { title: "Common Mistakes", category: "Educational", driveId: "1LH-TbgKRT63_pxhKMlR-DpEgE3U0D6Cd" },
 ];
+
+export const driveThumb = (id, size = 1000) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
+
+export const drivePreview = (id) =>
+  `https://drive.google.com/file/d/${id}/preview`;
 
 export const INITIATIVES = [
   { name: "Grihoo", url: "https://grihoo-housing.vercel.app/", desc: "A housing discovery platform built in-house." },

@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, Quote } from "lucide-react";
 import { WEB_PROJECTS, VIDEO_PROJECTS } from "../data/site";
+import { VideoCard } from "../sections/Portfolio";
+import VideoLightbox from "../components/VideoLightbox";
 import FinalCTA from "../sections/FinalCTA";
 
 export default function Work() {
+  const [active, setActive] = useState(null);
+
   return (
     <div data-testid="work-page">
       <section className="relative pt-40 pb-20 overflow-hidden">
@@ -82,7 +87,7 @@ export default function Work() {
         </div>
       </section>
 
-      {/* Video reel */}
+      {/* Video reel — full set */}
       <section className="pb-32 border-t border-white/10 pt-24 bg-[#070707]">
         <div className="max-w-7xl mx-auto px-6 md:px-10">
           <div className="flex items-center gap-4 mb-10">
@@ -90,39 +95,21 @@ export default function Work() {
               B · Video Editing & Motion Graphics
             </p>
             <span className="flex-1 h-px bg-white/10" />
-            <span className="font-mono text-xs text-neutral-600">Reel</span>
+            <span className="font-mono text-xs text-neutral-600">{VIDEO_PROJECTS.length} reels</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {VIDEO_PROJECTS.map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: (i % 3) * 0.06 }}
-                data-testid={`work-video-${i}`}
-                className="group relative aspect-video bg-[#0a0a0a] border border-white/10 hover:border-[#00E5FF]/30 rounded-2xl overflow-hidden transition-all cursor-pointer"
-              >
-                <div className="absolute inset-0 grid-bg opacity-40" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#00E5FF]/10 via-transparent to-[#0066FF]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute inset-0 grid place-items-center">
-                  <div className="w-16 h-16 rounded-full border border-white/20 grid place-items-center group-hover:border-[#00E5FF] group-hover:scale-110 transition-all bg-black/40 backdrop-blur-md">
-                    <svg className="w-5 h-5 text-white group-hover:text-[#00E5FF] transition-colors ml-0.5" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg>
-                  </div>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4">
-                  <p className="font-mono text-[10px] uppercase tracking-wider text-[#00E5FF] mb-1">{v.category}</p>
-                  <p className="font-heading text-lg font-medium tracking-tight">{v.title}</p>
-                </div>
-              </motion.div>
+              <VideoCard key={v.driveId} v={v} i={i} onOpen={setActive} />
             ))}
           </div>
           <p className="mt-8 text-xs text-neutral-500 font-mono">
-            * Reel access available on request — drop us a note for the full archive.
+            Click any thumbnail to watch the full reel. Hosted via Google Drive.
           </p>
         </div>
       </section>
+
+      <VideoLightbox video={active} onClose={() => setActive(null)} />
 
       <FinalCTA />
     </div>
