@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Code2, Palette, Sparkles, Film } from "lucide-react";
+import { ArrowUpRight, BarChart3, Brain, Code2, Film, Palette, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SERVICES } from "../data/site";
 
-const ICONS = { web: Code2, brand: Palette, motion: Sparkles, video: Film };
+const ICONS = { web: Code2, brand: Palette, motion: Sparkles, video: Film, data: BarChart3, ml: Brain };
 
 export default function ServicesSection() {
   return (
@@ -21,7 +21,7 @@ export default function ServicesSection() {
               [ 01 ] — Our Services
             </p>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-tighter font-medium leading-[1.05]">
-              Four disciplines.<br />
+              Six disciplines.<br />
               <span className="text-neutral-500">One studio, end-to-end.</span>
             </h2>
           </div>
@@ -33,7 +33,7 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10 rounded-3xl overflow-hidden">
           {SERVICES.map((s, i) => {
             const Icon = ICONS[s.id] || Code2;
             return (

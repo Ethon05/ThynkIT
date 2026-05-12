@@ -20,24 +20,38 @@ function WebProjectCard({ p, i }) {
     >
       <div className="aspect-[16/10] bg-gradient-to-br from-[#0a0a0a] via-[#050505] to-[#0a0a0a] relative overflow-hidden border-b border-white/10">
         <div className="absolute inset-0 grid-bg opacity-40" />
-        <div className="absolute inset-0 grid place-items-center">
-          <div className="text-center px-6">
-            <p className="font-heading text-xl md:text-2xl font-medium tracking-tight text-white/80 group-hover:text-[#00E5FF] transition-colors">
-              {p.name}
-            </p>
+        {p.logo ? (
+          <div className="absolute inset-0 grid place-items-center p-8">
+            <img
+              src={p.logo}
+              alt={`${p.name} logo`}
+              loading="lazy"
+              className="max-w-[70%] max-h-[70%] object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            />
           </div>
-        </div>
+        ) : (
+          <div className="absolute inset-0 grid place-items-center">
+            <div className="text-center px-6">
+              <p className="font-heading text-xl md:text-2xl font-medium tracking-tight text-white/80 group-hover:text-[#00E5FF] transition-colors">
+                {p.name}
+              </p>
+            </div>
+          </div>
+        )}
         <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/10 grid place-items-center opacity-0 group-hover:opacity-100 transition-opacity">
           <ExternalLink className="w-3.5 h-3.5 text-[#00E5FF]" />
         </div>
       </div>
       <div className="p-5 flex-1 flex flex-col gap-3">
         <div className="flex items-center justify-between gap-3">
-          <p className="font-mono text-xs text-neutral-500 truncate">
-            {p.url.replace("https://", "").replace("http://", "").replace(/\/$/, "") || "internal"}
+          <p className="font-heading text-sm font-medium tracking-tight text-white truncate">
+            {p.name}
           </p>
           <ArrowUpRight className="w-4 h-4 text-neutral-600 group-hover:text-[#00E5FF] group-hover:rotate-12 transition-all shrink-0" />
         </div>
+        <p className="font-mono text-[10px] text-neutral-500 truncate">
+          {p.url.replace("https://", "").replace("http://", "").replace(/\/$/, "") || "internal"}
+        </p>
         {p.testimonial && (
           <div className="pt-3 border-t border-white/10">
             <Quote className="w-3.5 h-3.5 text-[#00E5FF] mb-2" />

@@ -26,7 +26,7 @@ export default function FinalCTA() {
           className="font-heading text-5xl md:text-7xl lg:text-[7.5rem] tracking-tighter font-medium leading-[0.95]"
         >
           Build with us.<br />
-          <span className="gradient-text italic font-light">Out-build the world.</span>
+          <span className="gradient-text italic font-light">Out-build&nbsp;the&nbsp;world.</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 14 }}
@@ -55,11 +55,11 @@ export default function FinalCTA() {
             <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
           </Link>
           <a
-            href="mailto:hello@thynkit.agency"
+            href="mailto:info@thynkit.agency"
             data-testid="final-cta-secondary"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-medium border border-white/15 bg-white/[0.02] hover:bg-white/[0.06] transition-colors"
           >
-            hello@thynkit.agency
+            info@thynkit.agency
           </a>
         </motion.div>
       </div>

@@ -55,22 +55,36 @@ export default function Work() {
               >
                 <div className="aspect-[16/9] bg-gradient-to-br from-[#0a0a0a] via-[#050505] to-[#0a0a0a] relative overflow-hidden border-b border-white/10">
                   <div className="absolute inset-0 grid-bg opacity-40" />
-                  <div className="absolute inset-0 grid place-items-center px-8">
-                    <p className="font-heading text-2xl md:text-3xl font-medium tracking-tight text-white/80 group-hover:text-[#00E5FF] transition-colors text-center">
-                      {p.name}
-                    </p>
-                  </div>
+                  {p.logo ? (
+                    <div className="absolute inset-0 grid place-items-center p-10">
+                      <img
+                        src={p.logo}
+                        alt={`${p.name} logo`}
+                        loading="lazy"
+                        className="max-w-[60%] max-h-[70%] object-contain opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                      />
+                    </div>
+                  ) : (
+                    <div className="absolute inset-0 grid place-items-center px-8">
+                      <p className="font-heading text-2xl md:text-3xl font-medium tracking-tight text-white/80 group-hover:text-[#00E5FF] transition-colors text-center">
+                        {p.name}
+                      </p>
+                    </div>
+                  )}
                   <div className="absolute top-4 right-4 inline-flex items-center gap-2 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1.5 rounded-full text-xs font-mono text-neutral-300 opacity-0 group-hover:opacity-100 transition-opacity">
                     Visit live <ExternalLink className="w-3 h-3" />
                   </div>
                 </div>
                 <div className="p-6 md:p-8">
                   <div className="flex items-center justify-between gap-3">
-                    <p className="font-mono text-xs text-neutral-500 truncate">
-                      {p.url.replace("https://", "").replace("http://", "").replace(/\/$/, "") || "internal"}
+                    <p className="font-heading text-base md:text-lg font-medium tracking-tight text-white truncate">
+                      {p.name}
                     </p>
-                    <ArrowUpRight className="w-4 h-4 text-neutral-600 group-hover:text-[#00E5FF] group-hover:rotate-12 transition-all" />
+                    <ArrowUpRight className="w-4 h-4 text-neutral-600 group-hover:text-[#00E5FF] group-hover:rotate-12 transition-all shrink-0" />
                   </div>
+                  <p className="mt-1 font-mono text-xs text-neutral-500 truncate">
+                    {p.url.replace("https://", "").replace("http://", "").replace(/\/$/, "") || "internal"}
+                  </p>
                   {p.testimonial && (
                     <div className="mt-4 pt-4 border-t border-white/10">
                       <Quote className="w-4 h-4 text-[#00E5FF] mb-2" />

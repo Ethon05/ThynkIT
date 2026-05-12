@@ -5,10 +5,10 @@ import axios from "axios";
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const FALLBACK = [
-  { value: 142, suffix: "+", label: "Projects shipped", k: "projects_delivered" },
-  { value: 38, suffix: "", label: "AI models in production", k: "ai_models_deployed" },
-  { value: 99, suffix: "%", label: "Client satisfaction", k: "client_satisfaction" },
-  { value: 17, suffix: "", label: "Countries served", k: "countries_served" },
+  { value: 17, suffix: "+", label: "Web projects shipped", k: "web_projects" },
+  { value: 12, suffix: "", label: "Video reels delivered", k: "video_reels" },
+  { value: 4, suffix: "", label: "In-house initiatives", k: "initiatives" },
+  { value: 2024, suffix: "", label: "Studio established", k: "founded" },
 ];
 
 function CountUp({ end, suffix = "" }) {

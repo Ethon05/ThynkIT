@@ -55,7 +55,10 @@ export default function MeetTheMinds() {
                   </h3>
                   <p className="text-sm text-neutral-400 leading-relaxed">{f.bio}</p>
                   <a
-                    href="#"
+                    href={f.linkedin}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    data-testid={`founder-linkedin-${i}`}
                     className="mt-4 inline-flex items-center gap-2 text-xs font-mono text-neutral-500 hover:text-[#00E5FF] transition-colors"
                   >
                     <Linkedin className="w-3.5 h-3.5" /> LinkedIn

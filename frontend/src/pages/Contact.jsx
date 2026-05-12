@@ -81,16 +81,16 @@ export default function Contact() {
 
             <div className="space-y-4 pt-8 border-t border-white/10">
               <a
-                href="mailto:hello@thynkit.agency"
+                href="mailto:info@thynkit.agency"
                 className="flex items-center gap-3 text-neutral-300 hover:text-[#00E5FF] transition-colors"
                 data-testid="contact-email"
               >
                 <Mail className="w-4 h-4" />
-                <span>hello@thynkit.agency</span>
+                <span>info@thynkit.agency</span>
               </a>
               <div className="flex items-center gap-3 text-neutral-500">
                 <MapPin className="w-4 h-4" />
-                <span className="font-mono text-sm">London · Toronto · Bangalore</span>
+                <span className="font-mono text-sm">London · Toronto · Bangladesh</span>
               </div>
               <div className="flex items-center gap-3 pt-2">
                 <span className="live-dot" />

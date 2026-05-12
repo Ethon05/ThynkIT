@@ -4,6 +4,12 @@ export const LOGO_URL =
 export const HERO_VIDEO_URL =
   "https://customer-assets.emergentagent.com/job_ai-innovation-labs-1/artifacts/8xekaci4_Final%20ThinKIT%20web%20Vid.mp4";
 
+// Drive helper used for both image logos and video thumbs/embeds
+export const driveThumb = (id, size = 1000) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
+export const drivePreview = (id) =>
+  `https://drive.google.com/file/d/${id}/preview`;
+
 export const FOUNDERS = [
   {
     name: "Ehteshamul Islam",
@@ -11,6 +17,7 @@ export const FOUNDERS = [
     image:
       "https://customer-assets.emergentagent.com/job_ai-innovation-labs-1/artifacts/hte91sms_Untitled%20design%20%287%29.png",
     bio: "Designer-engineer hybrid leading product vision, client strategy, and the studio's creative direction.",
+    linkedin: "https://www.linkedin.com/in/ehteshamulislam/",
   },
   {
     name: "Shafil Al Ekram",
@@ -18,6 +25,7 @@ export const FOUNDERS = [
     image:
       "https://customer-assets.emergentagent.com/job_ai-innovation-labs-1/artifacts/9suzreoc_c1bad7a4-78e4-4f35-b160-7e9b13c85ec1.png",
     bio: "ML Ops architect bringing intelligent systems, automation, and engineering rigor to every build.",
+    linkedin: "https://www.linkedin.com/in/shafil-alekram-885016221/",
   },
 ];
 
@@ -57,29 +65,56 @@ export const SERVICES = [
     desc: "Cinematic edits for launches, social, and product films — pacing, color, and sound that punch above weight.",
     bullets: ["Launch films", "Social cutdowns", "Color grade", "Sound design"],
   },
+  {
+    id: "data",
+    code: "05",
+    title: "Data Analytics",
+    desc: "Decision-grade dashboards, pipelines, and analysis layered on top of your data — clarity over chaos.",
+    bullets: ["Dashboards", "ETL pipelines", "BI", "Reporting"],
+  },
+  {
+    id: "ml",
+    code: "06",
+    title: "ML Applications",
+    desc: "Custom machine-learning systems shipped to production — from prototype to scalable inference.",
+    bullets: ["Custom models", "LLM apps", "RAG", "MLOps"],
+  },
 ];
 
+// Drive logo IDs mapped to projects (only confident matches)
+const LOGOS = {
+  dentex: "1Fzfbpjz-Bt8xKdrzoGp99ayU7anRyh_D",
+  stdavids: "1dHDExo4XNuksENiKLlYKXVQcSWNJbRtv",
+  interia: "1Mt1RbJV8IhszOlSPtR9ZaDEGibMx28bY",
+  ahmedpool: "1dQfRCOsK2EK0X6wPokZMW-dDRrC2CJVo",
+  goldenUnion: "1tMz8Jqob8r4CDCvVVdgnODEZylQT8GO8",
+  wexler: "1jMYdyeb5U2DZA7MpRNl9p0_u1kBkgzM4",
+  ruthless: "1_r5TLpWaa6qaPztrVW_OgcOPngWT0PxO",
+};
+
+// Web projects — ordered as requested:
+// Sopee AI + Escape Bags new, Ruthless Studio moved to lower section
 export const WEB_PROJECTS = [
-  { name: "Ruthless Studio / Ruthless Supplement US", url: "https://ruthlessstudio.co", testimonial: { author: "Ashif Shahriar", quote: "Thynk IT shipped a launch site that converted from day one." } },
+  { name: "Sopee AI", url: "https://sopee-ai.vercel.app/" },
   { name: "Rico International", url: "https://www.ricointernational.net/" },
-  { name: "Saint David's IELTS", url: "https://www.stdavidsielts.com", testimonial: { author: "Rifat Rahman", quote: "Clean, fast, and exactly what our students needed." } },
-  { name: "Excellence Computer BD", url: "https://www.excellencecomputerbd.com", testimonial: { author: "Azizur Rahman", quote: "Professional from kickoff to handover. Highly recommended." } },
-  { name: "Dentex", url: "https://www.dentex.cc", testimonial: { author: "Sumettro Saha", quote: "They translated a complex brief into a beautiful product." } },
-  { name: "Golden Union", url: "https://www.guwendy.com/" },
+  { name: "Saint David's IELTS", url: "https://www.stdavidsielts.com", logo: driveThumb(LOGOS.stdavids), testimonial: { author: "Rifat Rahman", quote: "Clean, fast, and exactly what our students needed." } },
+  { name: "Escape Bags", url: "https://escapebagsbd.com/" },
+  { name: "Dentex", url: "https://www.dentex.cc", logo: driveThumb(LOGOS.dentex), testimonial: { author: "Sumettro Saha", quote: "They translated a complex brief into a beautiful product." } },
+  { name: "Golden Union", url: "https://www.guwendy.com/", logo: driveThumb(LOGOS.goldenUnion) },
   { name: "Badhon Fashion", url: "https://www.badhonfashion.com/" },
   { name: "Eros BD", url: "https://www.erosbd.shop/" },
   { name: "Broodchic", url: "https://www.broodchic.com/" },
-  { name: "Interia Ltd.", url: "https://interia-ebon.vercel.app/" },
-  { name: "Wexler & Hart Cleaning Co.", url: "https://www.wnhcleaning.com.au/" },
-  { name: "Ahmed Swimmingpool Ltd.", url: "#" },
+  { name: "Interia Ltd.", url: "https://interia-ebon.vercel.app/", logo: driveThumb(LOGOS.interia) },
+  { name: "Wexler & Hart Cleaning Co.", url: "https://www.wnhcleaning.com.au/", logo: driveThumb(LOGOS.wexler) },
+  { name: "Ahmed Swimmingpool Ltd.", url: "#", logo: driveThumb(LOGOS.ahmedpool) },
   { name: "Taqneo — KSA Tech Startup", url: "https://www.taqneo.com/" },
   { name: "Neo ID", url: "https://www.neo-id.com/" },
   { name: "Tom James | Gunnar Churchwell", url: "https://the-wolf-s-tailor-gc.vercel.app/" },
   { name: "Dollap. — Albanian Marketplace", url: "#" },
+  // Moved to lower section per request
+  { name: "Ruthless Studio / Ruthless Supplement US", url: "https://ruthlessstudio.co", logo: driveThumb(LOGOS.ruthless), testimonial: { author: "Ashif Shahriar", quote: "Thynk IT shipped a launch site that converted from day one." } },
 ];
 
-// Real Drive-hosted client videos. Each has a thumbnail (Drive thumbnail API)
-// and an embeddable preview URL.
 export const VIDEO_PROJECTS = [
   { title: "Nikola Tesla", category: "Cinematic Documentary", driveId: "1GmHNW2vXhWKtPWSzFVish47VIZF4kFA5" },
   { title: "JH Agency", category: "Brand Ad", driveId: "1Qm3NRm23dfeKW7ls0clFs_pgKeRLoE5M" },
@@ -95,16 +130,10 @@ export const VIDEO_PROJECTS = [
   { title: "Common Mistakes", category: "Educational", driveId: "1LH-TbgKRT63_pxhKMlR-DpEgE3U0D6Cd" },
 ];
 
-export const driveThumb = (id, size = 1000) =>
-  `https://drive.google.com/thumbnail?id=${id}&sz=w${size}`;
-
-export const drivePreview = (id) =>
-  `https://drive.google.com/file/d/${id}/preview`;
-
 export const INITIATIVES = [
   { name: "Grihoo", url: "https://grihoo-housing.vercel.app/", desc: "A housing discovery platform built in-house." },
-  { name: "Aerogro", url: "https://www.aerogro.org/", desc: "An initiative for sustainable urban agriculture." },
-  { name: "Comment Sensei", url: "https://github.com/CHNsPart/Comment-Analysis-VADER-SVM-Model", desc: "Open-source YouTube tutorial evaluator using VADER + SVM." },
+  { name: "Aerogro", url: "https://www.aerogro.org/", desc: "An initiative for sustainable urban agriculture.", logo: driveThumb("1HtKOSsCaDXYjNxRw6KL-NGLmBo9vc_ey") },
+  { name: "Comment Sensei", url: "https://github.com/CHNsPart/Comment-Analysis-VADER-SVM-Model", desc: "Open-source YouTube tutorial evaluator using VADER + SVM.", logo: driveThumb("1uaSsZ-YwTwW86A9MZnNpUO1RLBK087Xh") },
   { name: "Oonkoo", url: "https://www.oonkoo.com/", desc: "Creative product studio.", testimonial: { author: "Touhidul Islam Chayan", quote: "Thynk IT understood the vision and ran with it." } },
 ];
 
@@ -123,7 +152,7 @@ export const TECH_STACK = [
 ];
 
 export const CLIENT_LOGOS = [
-  "RUTHLESS", "RICO INT'L", "ST DAVID'S", "DENTEX",
+  "SOPEE AI", "RICO INT'L", "ST DAVID'S", "DENTEX", "ESCAPE BAGS",
   "GOLDEN UNION", "BROODCHIC", "TAQNEO", "NEO ID",
-  "WEXLER & HART", "INTERIA", "EROS BD", "BADHON",
+  "WEXLER & HART", "INTERIA", "EROS BD", "BADHON", "RUTHLESS",
 ];
