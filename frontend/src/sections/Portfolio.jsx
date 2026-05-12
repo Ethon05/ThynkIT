@@ -85,7 +85,7 @@ export function VideoCard({ v, i, onOpen }) {
           alt={v.title}
           loading="lazy"
           onError={() => setImgError(true)}
-          className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-[1.2s] ease-out"
+          className="absolute inset-0 w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-[1200ms] ease-out"
         />
       ) : (
         <div className="absolute inset-0 grid-bg opacity-40" />
