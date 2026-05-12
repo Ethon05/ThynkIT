@@ -83,14 +83,32 @@ export const SERVICES = [
 
 // Drive logo IDs mapped to projects (only confident matches)
 const LOGOS = {
-  dentex: "1Fzfbpjz-Bt8xKdrzoGp99ayU7anRyh_D",
+  sopee: "1tMz8Jqob8r4CDCvVVdgnODEZylQT8GO8",
+  rico: "1LULv1S9Al1bsZGdcXPNgW4nySVLA6rDA",
   stdavids: "1dHDExo4XNuksENiKLlYKXVQcSWNJbRtv",
+  escapebags: "1sYlZ9hhGQQIY7cGPtKZPoMkBolgheZtD",
+  dentex: "1Fzfbpjz-Bt8xKdrzoGp99ayU7anRyh_D",
+  goldenUnion: "1jzkjtgVM83Rx2n-cQcuaWDlf8y9vBxsZ",
+  eros: "1EtdG-DhODHIqgD4ee-f04JCTRxV-50a5",
+  broodchic: "1DZB9BiWGfP5BxY2d9UhM1rnkDgW-L-8S",
   interia: "1Mt1RbJV8IhszOlSPtR9ZaDEGibMx28bY",
-  ahmedpool: "1dQfRCOsK2EK0X6wPokZMW-dDRrC2CJVo",
-  goldenUnion: "1tMz8Jqob8r4CDCvVVdgnODEZylQT8GO8",
   wexler: "1jMYdyeb5U2DZA7MpRNl9p0_u1kBkgzM4",
+  ahmedpool: "1dQfRCOsK2EK0X6wPokZMW-dDRrC2CJVo",
+  taqneo: "1n9vTOSORTskoIAI5OxiyN15F-EMwZWQM",
+  dollap: "1PNgMjB9Jip2mIt2FsXV1STRfKUhBWAbg",
   ruthless: "1_r5TLpWaa6qaPztrVW_OgcOPngWT0PxO",
 };
+
+export const TEAM = [
+  { name: "Amadadul Islam", role: "Managing Director", image: driveThumb("1ogcncSXmQq9fTb6CQRfgDGDqp90vAFtq") },
+  { name: "Eshfatul Islam", role: "Chief Marketing Officer", image: driveThumb("1wpnrIvmTftnYdb52JF-6DjXWEGymT0P8") },
+  { name: "Hossain Md Jumman", role: "Head of Creative & Digital Marketing", image: driveThumb("1vHBlWdwBHkP9weTN7DW9C61KEb66rLYu") },
+  { name: "Mahabuba Rahman", role: "UI/UX & Graphics Designer", image: driveThumb("1p6rJdeHK50w0pveZIWoyyL28vXoWQSCF") },
+  { name: "Mahadi Hasan", role: "Software Engineer", image: driveThumb("1Q8bWpiOfmcvXVpFOjwQA_XD50u3-PjJb") },
+  { name: "Mahamudul Hasan Tarek", role: "Shopify / WordPress Developer", image: driveThumb("1mpWF6-TzROqdzsx7gxYZP6BoKhsMZBXo") },
+  { name: "Maisha Samiha", role: "Customer Success Manager", image: driveThumb("1aGmJU4Bq0SuzoMoINzt2yP-FhTpKQ9ow") },
+  { name: "Abdullah Sayed", role: "Video & Motion Graphics Editor", image: driveThumb("1fv1kB2kqpX7bj_b2ZuvXUjYlyrZbrMIe") },
+];
 
 // Web projects — ordered as requested:
 // Sopee AI + Escape Bags new, Ruthless Studio moved to lower section
