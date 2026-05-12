@@ -35,7 +35,7 @@ export default function Services() {
             transition={{ duration: 0.8, delay: 0.15 }}
             className="mt-8 max-w-2xl text-lg text-neutral-400 leading-relaxed"
           >
-            Six disciplines, one operating system for ambitious teams. Every engagement is
+            Nine disciplines, one operating system for ambitious teams. Every engagement is
             scoped, staffed, and shipped by senior practitioners — never juniors with a deck.
           </motion.p>
         </div>

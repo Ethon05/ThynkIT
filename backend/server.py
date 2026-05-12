@@ -9,6 +9,8 @@ from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
+from email.message import EmailMessage
+import aiosmtplib
 
 
 ROOT_DIR = Path(__file__).parent
@@ -90,6 +92,50 @@ async def get_status_checks():
     return rows
 
 
+async def _send_lead_notification(lead: "Lead") -> None:
+    """Email the new lead details to the agency owner.
+    Silently skipped if SMTP credentials are not configured (e.g. local dev)."""
+    host = os.environ.get('SMTP_HOST', '').strip()
+    user = os.environ.get('SMTP_USER', '').strip()
+    pwd = os.environ.get('SMTP_PASS', '').strip()
+    to_addr = os.environ.get('LEAD_NOTIFY_EMAIL', '').strip() or 'ethonislam00@gmail.com'
+    if not (host and user and pwd):
+        logger.info(f"SMTP not configured — lead stored in DB only. Notify={to_addr}")
+        return
+    port = int(os.environ.get('SMTP_PORT', '587'))
+    from_addr = os.environ.get('SMTP_FROM', '').strip() or user
+
+    msg = EmailMessage()
+    msg['From'] = from_addr
+    msg['To'] = to_addr
+    msg['Reply-To'] = lead.email
+    msg['Subject'] = f"[Thynk IT] New lead — {lead.name} ({lead.service or 'No service'})"
+    body = (
+        f"New inquiry from the Thynk IT contact form\n\n"
+        f"Name:    {lead.name}\n"
+        f"Email:   {lead.email}\n"
+        f"Company: {lead.company or '-'}\n"
+        f"Service: {lead.service or '-'}\n"
+        f"Budget:  {lead.budget or '-'}\n"
+        f"When:    {lead.created_at.isoformat()}\n\n"
+        f"Message:\n{lead.message}\n"
+    )
+    msg.set_content(body)
+    try:
+        await aiosmtplib.send(
+            msg,
+            hostname=host,
+            port=port,
+            username=user,
+            password=pwd,
+            start_tls=True,
+            timeout=15,
+        )
+        logger.info(f"Lead notification email sent to {to_addr}")
+    except Exception as exc:
+        logger.error(f"Failed to send lead notification email: {exc}")
+
+
 @api_router.post("/leads", response_model=Lead)
 async def create_lead(payload: LeadCreate):
     lead = Lead(**payload.model_dump())
@@ -97,6 +143,7 @@ async def create_lead(payload: LeadCreate):
     doc['created_at'] = doc['created_at'].isoformat()
     await db.leads.insert_one(doc)
     logger.info(f"New lead captured: {lead.email}")
+    await _send_lead_notification(lead)
     return lead
 
 

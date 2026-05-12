@@ -79,6 +79,27 @@ export const SERVICES = [
     desc: "Custom machine-learning systems shipped to production — from prototype to scalable inference.",
     bullets: ["Custom models", "LLM apps", "RAG", "MLOps"],
   },
+  {
+    id: "seo",
+    code: "07",
+    title: "GSEO & Search Ranking",
+    desc: "Generative + traditional SEO that earns you placement in Google AI Overviews, ChatGPT, and Perplexity — not just page one.",
+    bullets: ["Technical SEO", "GEO/AEO", "Content systems", "Schema & E-E-A-T"],
+  },
+  {
+    id: "automation",
+    code: "08",
+    title: "AI Workflow Automation",
+    desc: "Replace repetitive ops with autonomous agents and n8n/Make pipelines — sales, support, ops, content, all on autopilot.",
+    bullets: ["n8n / Make / Zapier", "Agent workflows", "CRM & ops sync", "Slack/email bots"],
+  },
+  {
+    id: "agents",
+    code: "09",
+    title: "AI Agents & Copilots",
+    desc: "Custom GPTs, internal copilots, and customer-facing chat agents wired into your data — built on GPT-5, Claude, and Gemini.",
+    bullets: ["RAG copilots", "Voice agents", "Tool calling", "Eval & guardrails"],
+  },
 ];
 
 // Drive logo IDs mapped to projects (only confident matches)
@@ -113,22 +134,22 @@ export const TEAM = [
 // Web projects — ordered as requested:
 // Sopee AI + Escape Bags new, Ruthless Studio moved to lower section
 export const WEB_PROJECTS = [
-  { name: "Sopee AI", url: "https://sopee-ai.vercel.app/" },
-  { name: "Rico International", url: "https://www.ricointernational.net/" },
+  { name: "Sopee AI", url: "https://sopee-ai.vercel.app/", logo: driveThumb(LOGOS.sopee) },
+  { name: "Rico International", url: "https://www.ricointernational.net/", logo: driveThumb(LOGOS.rico) },
   { name: "Saint David's IELTS", url: "https://www.stdavidsielts.com", logo: driveThumb(LOGOS.stdavids), testimonial: { author: "Rifat Rahman", quote: "Clean, fast, and exactly what our students needed." } },
-  { name: "Escape Bags", url: "https://escapebagsbd.com/" },
+  { name: "Escape Bags", url: "https://escapebagsbd.com/", logo: driveThumb(LOGOS.escapebags) },
   { name: "Dentex", url: "https://www.dentex.cc", logo: driveThumb(LOGOS.dentex), testimonial: { author: "Sumettro Saha", quote: "They translated a complex brief into a beautiful product." } },
   { name: "Golden Union", url: "https://www.guwendy.com/", logo: driveThumb(LOGOS.goldenUnion) },
   { name: "Badhon Fashion", url: "https://www.badhonfashion.com/" },
-  { name: "Eros BD", url: "https://www.erosbd.shop/" },
-  { name: "Broodchic", url: "https://www.broodchic.com/" },
+  { name: "Eros BD", url: "https://www.erosbd.shop/", logo: driveThumb(LOGOS.eros) },
+  { name: "Broodchic", url: "https://www.broodchic.com/", logo: driveThumb(LOGOS.broodchic) },
   { name: "Interia Ltd.", url: "https://interia-ebon.vercel.app/", logo: driveThumb(LOGOS.interia) },
   { name: "Wexler & Hart Cleaning Co.", url: "https://www.wnhcleaning.com.au/", logo: driveThumb(LOGOS.wexler) },
   { name: "Ahmed Swimmingpool Ltd.", url: "#", logo: driveThumb(LOGOS.ahmedpool) },
-  { name: "Taqneo — KSA Tech Startup", url: "https://www.taqneo.com/" },
+  { name: "Taqneo — KSA Tech Startup", url: "https://www.taqneo.com/", logo: driveThumb(LOGOS.taqneo) },
   { name: "Neo ID", url: "https://www.neo-id.com/" },
   { name: "Tom James | Gunnar Churchwell", url: "https://the-wolf-s-tailor-gc.vercel.app/" },
-  { name: "Dollap. — Albanian Marketplace", url: "#" },
+  { name: "Dollap. — Albanian Marketplace", url: "#", logo: driveThumb(LOGOS.dollap) },
   // Moved to lower section per request
   { name: "Ruthless Studio / Ruthless Supplement US", url: "https://ruthlessstudio.co", logo: driveThumb(LOGOS.ruthless), testimonial: { author: "Ashif Shahriar", quote: "Thynk IT shipped a launch site that converted from day one." } },
 ];

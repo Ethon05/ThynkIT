@@ -1,43 +1,52 @@
-# Thynk IT — Premium Agency Site
+# Thynk IT — Digital Agency Website (PRD)
 
-## Problem Statement (verbatim)
-Rebuild and upscale the Thynk IT digital agency website. Minimalist, modern, premium — inspired by Stripe/Linear/Vercel/Arc. Single-page SPA / multi-route React app with cinematic hero video, structured grid, crisp typography, micro-interactions. Sections: Hero (with promo video), Services (4), Portfolio (16 web + video reel), Initiatives (4), Meet the Minds (2 founders), Contact.
+## Original problem statement
+Reinvent the Thynk IT digital agency website into a minimalist, premium, futuristic SPA inspired by Stripe / Linear / Apple. Dark mode, smooth scroll, dynamic interactions. Sections: Hero (with promo video), Services, Portfolio (Web & Video), Initiatives, Meet the Minds, Contact.
 
-## Architecture
-- **Frontend:** React 19 + react-router-dom + Tailwind + framer-motion + react-fast-marquee + lucide-react + sonner (toasts)
-- **Backend:** FastAPI + Motor (MongoDB) — endpoints `/api/leads`, `/api/newsletter`, `/api/metrics`
-- **Theme:** Dark obsidian (#050505) with Electric Cyan (#00E5FF) accent, Outfit/Inter/JetBrains Mono fonts
+## Tech stack
+- React 19 + TailwindCSS + Framer Motion + react-router-dom
+- FastAPI backend + MongoDB (motor)
+- aiosmtplib for outbound SMTP email notifications
+- Assets hosted on Google Drive (public links) and Emergent CDN
 
-## User Personas
-- Prospective enterprise/startup client looking to hire a creative-tech studio
-- Existing client wanting to read case studies / testimonials
-- Talent / partners scanning About + work
+## What's been implemented
+- 2026-02-12 Hero with separated Drive iframe, delayed text animation
+- 2026-02-12 Services bento grid + dedicated /services page
+- 2026-02-12 Portfolio (Web + Video) with logos & video lightbox
+- 2026-02-12 Initiatives showcase
+- 2026-02-12 MeetTheMinds — 2 founders + 8 team members (horizontal snap strip, "Option C")
+- 2026-02-12 Footer + Newsletter signup
+- 2026-02-12 Contact page wired to POST /api/leads
+- 2026-02-12 9 services: Web Dev, Brand, Motion, Video, Data Analytics, ML Apps, **GSEO & Search Ranking**, **AI Workflow Automation**, **AI Agents & Copilots**
+- 2026-02-12 Contact form service dropdown includes all 9 + "Multiple / Not sure"
+- 2026-02-12 Backend sends lead notification email to **ethonislam00@gmail.com** via SMTP (when SMTP_* env vars are set). Lead always persisted to Mongo.
+- 2026-02-12 Footer + Contact page show `ethonislam00@gmail.com` as the reach email.
 
-## Core Requirements (static)
-1. Cinematic hero with provided Thynk IT promo video as bg
-2. 4 services: Web Dev, Brand, Motion, Video Editing
-3. 16 web client projects with live URLs + 5 real testimonials
-4. Video reel gallery (placeholder until Drive opens)
-5. In-house initiatives: Grihoo, Aerogro, Comment Sensei, Oonkoo
-6. Founders: Ehteshamul Islam (CEO) + Shafil Al Ekram (Co-Founder & Lead ML Ops)
-7. Working contact form persisted to MongoDB
-8. Multi-page routing: /, /services, /work, /about, /contact
+## Deployment notes
+The website is functionally deployment-ready. For email notifications to fire, set these in production env:
+```
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=<gmail address that sends>
+SMTP_PASS=<gmail app password>          # https://myaccount.google.com/apppasswords
+SMTP_FROM=<gmail address that sends>    # usually same as SMTP_USER
+LEAD_NOTIFY_EMAIL=ethonislam00@gmail.com
+```
+If SMTP_* are empty, leads still save to Mongo (and the request still returns 200); the backend simply logs that email was skipped.
 
-## Implemented (2026-05-10)
-- Backend: /api/leads (POST/GET), /api/newsletter (POST idempotent), /api/metrics, /api/status
-- Frontend pages: Home, Services, Work, About, Contact
-- Sections: Hero (video bg), ClientMarquee, ServicesSection, Portfolio (web+video), Initiatives, Process, MeetTheMinds, Metrics, TechStack, FinalCTA, Footer
-- Hero video: Final ThinKIT web Vid.mp4
-- Founder portraits with grayscale → color hover
-- Real client testimonials embedded in project cards
-- Cursor glow, magnetic CTAs, scroll-triggered animations
-- Footer newsletter subscription
-- data-testid attributes on every interactive element
+## API endpoints
+- `POST /api/leads` — capture contact-form lead; emails owner.
+- `GET /api/leads` — admin list of leads.
+- `POST /api/newsletter` — newsletter subscribe (idempotent).
+- `GET /api/metrics` — public metrics.
+- `POST/GET /api/status` — health/status check.
 
-## Backlog (P1/P2)
-- [P1] Replace video reel placeholders with real assets once Drive folder is public
-- [P1] Real founder LinkedIn URLs
-- [P2] Per-project case study pages (currently links to live sites)
-- [P2] Blog / insights section
-- [P2] Email notifications on new leads (Resend / SendGrid)
-- [P2] Replace generic countries/projects metrics with real ones
+## Data layer
+- Mongo collections: `leads`, `newsletter`, `status_checks`.
+- All static content in `/app/frontend/src/data/site.js` (founders, team, services, projects, initiatives).
+
+## Roadmap / Backlog (P2)
+- SEO meta tags + OG cards per page
+- Lighthouse pass / image optimisation
+- Optional: refactor `site.js` into `data/team.js`, `data/projects.js` if it grows
+- Optional: admin dashboard for `/api/leads`

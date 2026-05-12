@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, BarChart3, Brain, Code2, Film, Palette, Sparkles } from "lucide-react";
+import { ArrowUpRight, BarChart3, Bot, Brain, Code2, Film, Palette, Search, Sparkles, Workflow } from "lucide-react";
 import { Link } from "react-router-dom";
 import { SERVICES } from "../data/site";
 
-const ICONS = { web: Code2, brand: Palette, motion: Sparkles, video: Film, data: BarChart3, ml: Brain };
+const ICONS = { web: Code2, brand: Palette, motion: Sparkles, video: Film, data: BarChart3, ml: Brain, seo: Search, automation: Workflow, agents: Bot };
 
 export default function ServicesSection() {
   return (
@@ -21,7 +21,7 @@ export default function ServicesSection() {
               [ 01 ] — Our Services
             </p>
             <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl tracking-tighter font-medium leading-[1.05]">
-              Six disciplines.<br />
+              Nine disciplines.<br />
               <span className="text-neutral-500">One studio, end-to-end.</span>
             </h2>
           </div>

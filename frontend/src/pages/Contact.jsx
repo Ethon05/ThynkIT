@@ -11,6 +11,11 @@ const SERVICES = [
   "Brand Design",
   "Motion Graphics",
   "Video Editing",
+  "Data Analytics",
+  "ML Applications",
+  "GSEO & Search Ranking",
+  "AI Workflow Automation",
+  "AI Agents & Copilots",
   "Multiple / Not sure",
 ];
 
@@ -80,14 +85,14 @@ export default function Contact() {
             </div>
 
             <div className="space-y-4 pt-8 border-t border-white/10">
-              <a
-                href="mailto:info@thynkit.agency"
-                className="flex items-center gap-3 text-neutral-300 hover:text-[#00E5FF] transition-colors"
-                data-testid="contact-email"
-              >
-                <Mail className="w-4 h-4" />
-                <span>info@thynkit.agency</span>
-              </a>
+                <a
+                  href="mailto:ethonislam00@gmail.com"
+                  className="flex items-center gap-3 text-neutral-300 hover:text-[#00E5FF] transition-colors"
+                  data-testid="contact-email"
+                >
+                  <Mail className="w-4 h-4" />
+                  <span>ethonislam00@gmail.com</span>
+                </a>
               <div className="flex items-center gap-3 text-neutral-500">
                 <MapPin className="w-4 h-4" />
                 <span className="font-mono text-sm">London · Toronto · Bangladesh</span>
@@ -117,7 +122,7 @@ export default function Contact() {
                 </h2>
                 <p className="text-neutral-400 leading-relaxed max-w-md mx-auto">
                   We'll be in touch within one business day. If it's urgent, you can also
-                  reach us directly at hello@thynkit.agency.
+                  reach us directly at ethonislam00@gmail.com.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
