@@ -5,13 +5,13 @@ import axios from "axios";
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const FALLBACK = [
-  { value: 17, suffix: "+", label: "Web projects shipped", k: "web_projects" },
-  { value: 12, suffix: "", label: "Video reels delivered", k: "video_reels" },
-  { value: 4, suffix: "", label: "In-house initiatives", k: "initiatives" },
-  { value: 2024, suffix: "", label: "Studio established", k: "founded" },
+  { value: 45, suffix: "+", label: "Projects completed", k: "projects_completed" },
+  { value: 30, suffix: "+", label: "Production videos delivered", k: "videos_delivered" },
+  { value: 10, suffix: "+", label: "AI automation workflows built", k: "ai_workflows" },
+  { value: 200, prefix: "~$", suffix: "k", label: "Revenue driven for brands", k: "revenue_driven" },
 ];
 
-function CountUp({ end, suffix = "" }) {
+function CountUp({ end, suffix = "", prefix = "" }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   const [val, setVal] = useState(0);
@@ -33,6 +33,7 @@ function CountUp({ end, suffix = "" }) {
 
   return (
     <span ref={ref}>
+      {prefix}
       {val}
       {suffix}
     </span>
@@ -75,7 +76,7 @@ export default function Metrics() {
             className="relative md:px-6 md:border-l md:first:border-l-0 md:border-white/10"
           >
             <div className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-tighter font-medium leading-none">
-              <CountUp end={s.value} suffix={s.suffix} />
+              <CountUp end={s.value} suffix={s.suffix} prefix={s.prefix} />
             </div>
             <p className="mt-4 text-sm text-neutral-500 font-mono uppercase tracking-wider leading-snug">
               {s.label}

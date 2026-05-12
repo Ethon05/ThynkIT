@@ -145,7 +145,7 @@ export const WEB_PROJECTS = [
   { name: "Broodchic", url: "https://www.broodchic.com/", logo: driveThumb(LOGOS.broodchic) },
   { name: "Interia Ltd.", url: "https://interia-ebon.vercel.app/", logo: driveThumb(LOGOS.interia) },
   { name: "Wexler & Hart Cleaning Co.", url: "https://www.wnhcleaning.com.au/", logo: driveThumb(LOGOS.wexler) },
-  { name: "Ahmed Swimmingpool Ltd.", url: "#", logo: driveThumb(LOGOS.ahmedpool) },
+  { name: "Ahmed Swimmingpool Ltd.", url: "https://crystal-waters-new.preview.emergentagent.com/", logo: driveThumb(LOGOS.ahmedpool) },
   { name: "Taqneo — KSA Tech Startup", url: "https://www.taqneo.com/", logo: driveThumb(LOGOS.taqneo) },
   { name: "Neo ID", url: "https://www.neo-id.com/" },
   { name: "Tom James | Gunnar Churchwell", url: "https://the-wolf-s-tailor-gc.vercel.app/" },

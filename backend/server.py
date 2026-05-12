@@ -173,12 +173,11 @@ async def newsletter_subscribe(payload: NewsletterCreate):
 @api_router.get("/metrics")
 async def public_metrics():
     """Public-facing live metrics for the marketing site."""
-    leads_count = await db.leads.count_documents({})
     return {
-        "projects_delivered": 142 + leads_count,
-        "ai_models_deployed": 38,
-        "client_satisfaction": 99,
-        "countries_served": 17,
+        "projects_completed": 45,
+        "videos_delivered": 30,
+        "ai_workflows": 10,
+        "revenue_driven": 200,
     }
 
 
