@@ -102,6 +102,226 @@ export const SERVICES = [
   },
 ];
 
+// Long-form content for individual service pages (/services/:slug)
+export const SERVICE_DETAILS = {
+  web: {
+    tagline: "Ship the website your strategy deck deserves.",
+    overview:
+      "We build production-grade web experiences for ambitious teams — marketing sites, SaaS dashboards, e-commerce stores, and bespoke web apps. Senior engineers ship every line; designers obsess over the details that change conversion. No theme-shop velocity, no hand-off-to-juniors.",
+    deliverables: [
+      "Custom Next.js / React build with type-safe APIs",
+      "Headless CMS (Sanity, Contentful, or Payload) configured for your team",
+      "Lighthouse 95+ on Performance, SEO, and Accessibility",
+      "CMS training + a 60-day post-launch warranty",
+    ],
+    process: [
+      { n: "01", t: "Discover", d: "1-week deep-dive on audience, funnel, and competitive context." },
+      { n: "02", t: "Design", d: "Identity-aware UI in Figma. You see hi-fi by week 2." },
+      { n: "03", t: "Build", d: "Two-week sprints. You watch in a private staging URL." },
+      { n: "04", t: "Launch", d: "Zero-downtime cutover + analytics + handoff docs." },
+    ],
+    tech: ["Next.js 15", "React 19", "TypeScript", "Tailwind", "Framer Motion", "Sanity / Payload CMS", "Vercel", "Cloudflare"],
+    useCases: [
+      "Series A/B SaaS launching a new positioning",
+      "DTC brand outgrowing Shopify themes",
+      "Agencies / consultancies looking premium without enterprise sprawl",
+    ],
+    faqs: [
+      { q: "How long until launch?", a: "Marketing sites: 4–8 weeks. SaaS web apps: 8–16 weeks. We scope tightly at kickoff and ship in two-week public increments." },
+      { q: "Do you support post-launch?", a: "Yes — a 60-day warranty is included, and most clients move into a retainer for CRO + new features." },
+    ],
+  },
+  brand: {
+    tagline: "An identity that's recognisable in three pixels.",
+    overview:
+      "We design identity systems that hold up across product, packaging, motion, social, and decks. Not a logo and a Pinterest board — a usable toolkit that your team and ours can build on for years.",
+    deliverables: [
+      "Logo system (primary, mark, lockups) with usage rules",
+      "Type, color, grid, and iconography",
+      "Brand book (PDF + Notion/Figma library)",
+      "Templates: deck, social, email, OG cards, business cards",
+    ],
+    process: [
+      { n: "01", t: "Audit", d: "Look at what you have, what competitors have, what you don't." },
+      { n: "02", t: "Concepts", d: "2–3 directions. Always defendable, never moodboard-derivative." },
+      { n: "03", t: "Refine", d: "Tighten the winning direction across every touchpoint." },
+      { n: "04", t: "Toolkit", d: "Ship the brand book + every template your team needs." },
+    ],
+    tech: ["Figma", "Illustrator", "Photoshop", "After Effects"],
+    useCases: ["Pre-launch startups", "Rebrands after a pivot or merger", "Sub-brand creation for new product lines"],
+    faqs: [
+      { q: "Do you do naming?", a: "Yes — naming sprints are a separate engagement (1–2 weeks) and pair well with the identity sprint." },
+      { q: "Will I own the files?", a: "Always. Full source files, fonts licensed in your name, no creative escrow." },
+    ],
+  },
+  motion: {
+    tagline: "Motion that earns attention — and keeps it.",
+    overview:
+      "From three-second logo reveals to two-minute explainers, we craft motion that fits inside a product, a launch, or a campaign. Every keyframe defensible, every beat intentional.",
+    deliverables: [
+      "Storyboards + animatic before any animation begins",
+      "Final renders in every aspect ratio you need (16:9, 9:16, 1:1, 4:5)",
+      "Source AE/Resolve files + soundbed stems",
+      "Optional: Lottie exports for the web",
+    ],
+    process: [
+      { n: "01", t: "Brief", d: "What story, what feeling, what platform." },
+      { n: "02", t: "Storyboard", d: "Frame-level approval before motion starts." },
+      { n: "03", t: "Animate", d: "Iteration on rough → polish → final renders." },
+      { n: "04", t: "Deliver", d: "All cuts, all ratios, all platforms, day one." },
+    ],
+    tech: ["After Effects", "Cinema 4D", "Lottie", "Premiere Pro", "DaVinci Resolve"],
+    useCases: ["Product launch films", "Investor explainers", "Logo and brand idents", "UI micro-motion for SaaS"],
+    faqs: [
+      { q: "Can you match our existing brand style?", a: "Yes — give us your brand book and a reference, and we'll match motion language exactly." },
+      { q: "Music & SFX?", a: "We license commercial-clear tracks or work with composers for fully custom scores." },
+    ],
+  },
+  video: {
+    tagline: "Cinematic edits that actually convert.",
+    overview:
+      "Launch films, social cutdowns, podcast highlights, product demos, founder reels. We bring narrative discipline and a colorist's eye to every cut — and we deliver in every aspect ratio social demands today.",
+    deliverables: [
+      "Hero edit (master) + 4–8 social cutdowns",
+      "Color grade + sound mix",
+      "Captions burned-in + SRT files",
+      "All deliverables in 4K, 1080p, 9:16, and 1:1",
+    ],
+    process: [
+      { n: "01", t: "Brief & rushes", d: "We review your footage + the story you want told." },
+      { n: "02", t: "Rough cut", d: "Pacing locked before color and sound." },
+      { n: "03", t: "Polish", d: "Grade, mix, titles, motion graphics." },
+      { n: "04", t: "Multi-format", d: "Every cutdown, every ratio, ready for posting." },
+    ],
+    tech: ["Premiere Pro", "DaVinci Resolve", "After Effects", "Frame.io for review"],
+    useCases: ["Founder LinkedIn videos", "Product launch films", "Podcast clip pipelines", "Course / educational series"],
+    faqs: [
+      { q: "Do you shoot too?", a: "We partner with senior DPs in major markets — let us know your location and we'll quote a full production." },
+      { q: "Turnaround?", a: "Standard edit: 7–10 business days from rushes. Rush: 48–72 hours with surcharge." },
+    ],
+  },
+  data: {
+    tagline: "Clarity, not chaos — from raw data to decisions.",
+    overview:
+      "We build the data layer ambitious companies wish they had — clean pipelines, decision-grade dashboards, and the analyst-grade thinking to interpret them. From scrappy CSV migrations to warehouse-led BI rebuilds.",
+    deliverables: [
+      "ETL/ELT pipelines (Airbyte, Fivetran, or custom)",
+      "Warehouse: BigQuery, Snowflake, or Postgres",
+      "Dashboards in Metabase, Looker, or custom React",
+      "Owner-facing KPI sheet + weekly insight memo (optional)",
+    ],
+    process: [
+      { n: "01", t: "Audit", d: "Inventory every data source, every dashboard, every blind spot." },
+      { n: "02", t: "Model", d: "Build a clean dimensional model — the source of truth." },
+      { n: "03", t: "Ship dashboards", d: "Stakeholder-specific views. Mobile-friendly." },
+      { n: "04", t: "Iterate", d: "Monthly office hours: refine metrics as the business evolves." },
+    ],
+    tech: ["BigQuery", "Snowflake", "Postgres", "dbt", "Metabase", "Looker", "Airbyte", "Python (pandas)"],
+    useCases: ["Series A startups graduating from spreadsheets", "DTC brands needing margin/cohort dashboards", "Operations teams drowning in CSV exports"],
+    faqs: [
+      { q: "Will it work with our stack?", a: "Almost certainly — we integrate Stripe, HubSpot, Shopify, GA4, Mixpanel, internal Postgres, and 100+ more sources." },
+      { q: "Who owns the warehouse?", a: "You do. Everything runs in your cloud account with your billing." },
+    ],
+  },
+  ml: {
+    tagline: "Custom ML, shipped to production — not a notebook in someone's Drive.",
+    overview:
+      "We build ML systems that earn their keep: recommendation engines, document understanding, churn prediction, fraud detection, semantic search. Prototype → production → monitored, with the MLOps rigor most teams skip.",
+    deliverables: [
+      "Production-grade model + inference API (FastAPI or your stack)",
+      "Evaluation harness with held-out metrics",
+      "Monitoring + drift detection",
+      "Documentation and a non-ML-engineer-friendly runbook",
+    ],
+    process: [
+      { n: "01", t: "Problem framing", d: "What's the decision the model improves? What's good enough to ship?" },
+      { n: "02", t: "Baseline", d: "Simple model first. Beat it, then go fancy." },
+      { n: "03", t: "Production", d: "Containerised, versioned, observed." },
+      { n: "04", t: "Improve", d: "A/B vs current process. Iterate monthly." },
+    ],
+    tech: ["PyTorch", "scikit-learn", "Hugging Face", "FastAPI", "Modal / SageMaker / Vertex", "MLflow", "Weights & Biases"],
+    useCases: ["Recommendations & ranking", "Document/PDF understanding", "Time-series forecasting", "Computer vision QA pipelines"],
+    faqs: [
+      { q: "What about LLMs vs traditional ML?", a: "We choose whichever is cheaper, faster, and more accurate for your case. Often a hybrid wins." },
+      { q: "Inference cost?", a: "We design for your unit economics. Custom small models often beat LLM calls on cost and latency." },
+    ],
+  },
+  seo: {
+    tagline: "Be the answer — in Google, ChatGPT, and Perplexity.",
+    overview:
+      "Modern SEO is two games at once: rank on traditional SERPs AND get cited by AI answer engines. We engineer for both with technical fixes, schema, content systems, and the E-E-A-T signals that humans and LLMs both reward.",
+    deliverables: [
+      "Technical audit + fix list with implementation",
+      "Schema markup (Article, Product, FAQ, HowTo, Organization)",
+      "Content system: pillar pages, programmatic templates, refreshes",
+      "Monthly performance report + AI citations tracking",
+    ],
+    process: [
+      { n: "01", t: "Audit", d: "Crawl, log-file analysis, GSC + Bing Webmaster baseline." },
+      { n: "02", t: "Fix", d: "Core Web Vitals, indexation, internal linking, schema." },
+      { n: "03", t: "Earn", d: "Content + digital PR for citations and backlinks." },
+      { n: "04", t: "Compound", d: "Quarterly refresh cycle. Watch share-of-voice grow." },
+    ],
+    tech: ["Ahrefs", "Semrush", "Screaming Frog", "GSC", "Schema.org", "Sanity / Webflow / WP", "GA4"],
+    useCases: ["B2B SaaS chasing organic-led growth", "Marketplaces with thin programmatic pages", "Local services losing AI Overview traffic"],
+    faqs: [
+      { q: "How fast will I see results?", a: "Technical wins compound in 4–8 weeks. Content + authority typically 3–6 months. We report monthly so there are no surprises." },
+      { q: "What's 'GSEO'?", a: "Generative Engine Optimization — getting your content cited inside ChatGPT, Gemini, Perplexity, and Google AI Overviews. Increasingly the bigger traffic source than blue links." },
+    ],
+  },
+  automation: {
+    tagline: "Your team should stop doing what software can do.",
+    overview:
+      "Sales follow-ups, lead enrichment, content pipelines, support triage, reporting, onboarding — every repeating workflow your team does manually is a candidate for automation. We design, build, and maintain the pipelines that pay for themselves.",
+    deliverables: [
+      "Audit of repeating workflows + ROI ranking",
+      "n8n / Make / Zapier workflows (or custom Python where required)",
+      "CRM, support, billing, and Slack/email integration",
+      "Owner dashboard + alerts when runs fail",
+    ],
+    process: [
+      { n: "01", t: "Inventory", d: "Shadow the team for a day. Find the costly repetition." },
+      { n: "02", t: "Design", d: "Diagram each workflow before a single trigger is built." },
+      { n: "03", t: "Build", d: "Self-hosted n8n + version-controlled. No vendor lock-in." },
+      { n: "04", t: "Operate", d: "Monitor, fix, expand. Monthly cost review." },
+    ],
+    tech: ["n8n (self-hosted)", "Make.com", "Zapier", "Python", "OpenAI GPT-5", "Anthropic Claude", "HubSpot/Salesforce APIs", "Slack/Discord"],
+    useCases: [
+      "Sales ops: enrichment + CRM hygiene + outbound personalisation",
+      "Customer support: auto-triage + draft replies",
+      "Content ops: brief → outline → draft → publish pipelines",
+      "Finance: invoice matching, reconciliation, reporting",
+    ],
+    faqs: [
+      { q: "How is this different from buying Zapier?", a: "Zapier is the toolbox. We're the team that designs the workflows, integrates with your stack, and keeps them running. Most clients self-host n8n for cost and ownership." },
+      { q: "Payback period?", a: "Most workflows pay back inside 60 days. We rank by ROI before building." },
+    ],
+  },
+  agents: {
+    tagline: "Agents that actually do the job — not just chat about it.",
+    overview:
+      "Internal copilots, customer-facing chat, voice agents, and autonomous agents wired into your stack. We build on GPT-5, Claude Sonnet 4.5, and Gemini 3 — with the evaluation, guardrails, and tool-calling depth most prototypes skip.",
+    deliverables: [
+      "Custom agent or copilot (web, Slack, or voice)",
+      "RAG pipeline grounded in your docs/data",
+      "Tool-calling integration with your APIs",
+      "Eval harness + guardrails + human-in-the-loop fallback",
+    ],
+    process: [
+      { n: "01", t: "Use case", d: "Pick one high-value task. Define what 'great' looks like." },
+      { n: "02", t: "Prototype", d: "Working agent in 1–2 weeks with the right data." },
+      { n: "03", t: "Harden", d: "Evals, guardrails, observability, cost controls." },
+      { n: "04", t: "Ship", d: "Deploy. Monitor. Expand to the next workflow." },
+    ],
+    tech: ["GPT-5 / 5.2", "Claude Sonnet 4.5 / Opus 4.5", "Gemini 3", "LangGraph", "Pydantic AI", "Pinecone / Weaviate / pgvector", "ElevenLabs (voice)"],
+    useCases: ["Customer support copilots (deflection 40–70%)", "Internal Q&A over policies, contracts, docs", "Sales research agents", "Voice agents for inbound calls"],
+    faqs: [
+      { q: "Which model should we use?", a: "Depends on cost, latency, and task. We benchmark Claude vs GPT vs Gemini for your specific workload before committing." },
+      { q: "How do you stop hallucinations?", a: "RAG grounding + tool-calling + eval harness + guardrails + human escalation paths. Defence in depth." },
+    ],
+  },
+};
+
 // Drive logo IDs mapped to projects (only confident matches)
 const LOGOS = {
   sopee: "1tMz8Jqob8r4CDCvVVdgnODEZylQT8GO8",
@@ -134,7 +354,7 @@ export const TEAM = [
 // Web projects — ordered as requested:
 // Sopee AI + Escape Bags new, Ruthless Studio moved to lower section
 export const WEB_PROJECTS = [
-  { name: "Sopee AI", url: "https://sopee-ai.vercel.app/", logo: driveThumb(LOGOS.sopee) },
+  { name: "Sopee AI", url: "https://sopee-ai.vercel.app/", logo: "https://customer-assets.emergentagent.com/job_ai-innovation-labs-1/artifacts/7o7l4fjh_Sopee%20AI.png" },
   { name: "Rico International", url: "https://www.ricointernational.net/", logo: driveThumb(LOGOS.rico) },
   { name: "Saint David's IELTS", url: "https://www.stdavidsielts.com", logo: driveThumb(LOGOS.stdavids), testimonial: { author: "Rifat Rahman", quote: "Clean, fast, and exactly what our students needed." } },
   { name: "Escape Bags", url: "https://escapebagsbd.com/", logo: driveThumb(LOGOS.escapebags) },
@@ -144,7 +364,7 @@ export const WEB_PROJECTS = [
   { name: "Eros BD", url: "https://www.erosbd.shop/", logo: driveThumb(LOGOS.eros) },
   { name: "Broodchic", url: "https://www.broodchic.com/", logo: driveThumb(LOGOS.broodchic) },
   { name: "Interia Ltd.", url: "https://interia-ebon.vercel.app/", logo: driveThumb(LOGOS.interia) },
-  { name: "Wexler & Hart Cleaning Co.", url: "https://www.wnhcleaning.com.au/", logo: driveThumb(LOGOS.wexler) },
+  { name: "Wexler & Hart Cleaning Co.", url: "https://www.wnhcleaning.com.au/", logo: "https://customer-assets.emergentagent.com/job_ai-innovation-labs-1/artifacts/qdajj8k2_Wexler%26Hart.png" },
   { name: "Ahmed Swimmingpool Ltd.", url: "https://crystal-waters-new.preview.emergentagent.com/", logo: driveThumb(LOGOS.ahmedpool) },
   { name: "Taqneo — KSA Tech Startup", url: "https://www.taqneo.com/", logo: driveThumb(LOGOS.taqneo) },
   { name: "Neo ID", url: "https://www.neo-id.com/" },

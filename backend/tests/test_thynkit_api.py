@@ -104,6 +104,13 @@ class TestMetrics:
         r = api.get(f"{BASE_URL}/api/metrics")
         assert r.status_code == 200
         data = r.json()
-        for k in ("projects_delivered", "ai_models_deployed", "client_satisfaction", "countries_served"):
-            assert k in data
+        expected = {
+            "projects_completed": 45,
+            "videos_delivered": 30,
+            "ai_workflows": 10,
+            "revenue_driven": 200,
+        }
+        for k, v in expected.items():
+            assert k in data, f"missing key {k}"
             assert isinstance(data[k], int)
+            assert data[k] == v, f"{k} expected {v} got {data[k]}"

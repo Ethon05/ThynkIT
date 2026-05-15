@@ -50,9 +50,12 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.6, delay: i * 0.04 }}
-              data-testid={`services-row-${s.id}`}
-              className="group bg-[#070707] hover:bg-[#0a0a0a] transition-colors p-8 md:p-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
             >
+              <Link
+                to={`/services/${s.id}`}
+                data-testid={`services-row-${s.id}`}
+                className="group bg-[#070707] hover:bg-[#0a0a0a] transition-colors p-8 md:p-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-start"
+              >
               <div className="md:col-span-1 font-mono text-xs text-neutral-600 tracking-wider md:pt-2">
                 {s.code}
               </div>
@@ -73,14 +76,14 @@ export default function Services() {
                 </ul>
               </div>
               <div className="md:col-span-1 flex md:justify-end">
-                <Link
-                  to="/contact"
+                <span
                   data-testid={`services-row-cta-${s.id}`}
-                  className="w-12 h-12 rounded-full border border-white/10 grid place-items-center hover:border-[#00E5FF]/50 hover:text-[#00E5FF] transition-colors"
+                  className="w-12 h-12 rounded-full border border-white/10 grid place-items-center group-hover:border-[#00E5FF]/50 group-hover:text-[#00E5FF] transition-colors"
                 >
                   <ArrowUpRight className="w-4 h-4" />
-                </Link>
+                </span>
               </div>
+              </Link>
             </motion.div>
           ))}
         </div>

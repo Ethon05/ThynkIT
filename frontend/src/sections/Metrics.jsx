@@ -64,7 +64,7 @@ export default function Metrics() {
       data-testid="metrics-section"
       className="relative py-20 md:py-28 border-y border-white/10 bg-[#050505]"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-4 md:gap-4">
         {stats.map((s, i) => (
           <motion.div
             key={s.k}
@@ -73,12 +73,12 @@ export default function Metrics() {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: i * 0.08 }}
             data-testid={`metric-${s.k}`}
-            className="relative md:px-6 md:border-l md:first:border-l-0 md:border-white/10"
+            className="relative md:px-6 md:border-l md:first:border-l-0 md:border-white/10 min-w-0"
           >
-            <div className="font-heading text-5xl md:text-6xl lg:text-7xl tracking-tighter font-medium leading-none">
+            <div className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight md:tracking-tighter font-medium leading-[1.05] break-words">
               <CountUp end={s.value} suffix={s.suffix} prefix={s.prefix} />
             </div>
-            <p className="mt-4 text-sm text-neutral-500 font-mono uppercase tracking-wider leading-snug">
+            <p className="mt-3 md:mt-4 text-[11px] sm:text-xs md:text-sm text-neutral-500 font-mono uppercase tracking-wider leading-snug">
               {s.label}
             </p>
           </motion.div>

@@ -37,15 +37,18 @@ export default function ServicesSection() {
           {SERVICES.map((s, i) => {
             const Icon = ICONS[s.id] || Code2;
             return (
-              <motion.article
+              <motion.div
                 key={s.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
                 transition={{ duration: 0.6, delay: i * 0.06 }}
-                data-testid={`service-card-${s.id}`}
-                className="group relative bg-[#070707] p-10 md:p-12 hover:bg-[#0a0a0a] transition-colors min-h-[360px] flex flex-col"
               >
+                <Link
+                  to={`/services/${s.id}`}
+                  data-testid={`service-card-${s.id}`}
+                  className="group relative bg-[#070707] p-10 md:p-12 hover:bg-[#0a0a0a] transition-colors min-h-[360px] flex flex-col h-full"
+                >
                 <div className="flex items-start justify-between mb-10">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl border border-white/10 grid place-items-center bg-black group-hover:border-[#00E5FF]/40 transition-colors">
@@ -72,7 +75,8 @@ export default function ServicesSection() {
                   ))}
                 </div>
                 <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-[#00E5FF] to-transparent opacity-0 group-hover:opacity-60 transition-opacity" />
-              </motion.article>
+                </Link>
+              </motion.div>
             );
           })}
         </div>
