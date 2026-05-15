@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 
@@ -13,23 +13,34 @@ const FALLBACK = [
 
 function CountUp({ end, suffix = "", prefix = "" }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
   const [val, setVal] = useState(0);
+  const triggered = useRef(false);
 
   useEffect(() => {
-    if (!inView) return;
-    let raf;
-    const start = performance.now();
-    const duration = 1600;
-    const tick = (t) => {
-      const p = Math.min(1, (t - start) / duration);
-      const eased = 1 - Math.pow(1 - p, 3);
-      setVal(Math.round(eased * end));
-      if (p < 1) raf = requestAnimationFrame(tick);
-    };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [inView, end]);
+    const el = ref.current;
+    if (!el || triggered.current) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || triggered.current) return;
+        triggered.current = true;
+        const start = performance.now();
+        const duration = 1600;
+        let raf;
+        const tick = (t) => {
+          const p = Math.min(1, (t - start) / duration);
+          const eased = 1 - Math.pow(1 - p, 3);
+          setVal(Math.round(eased * end));
+          if (p < 1) raf = requestAnimationFrame(tick);
+        };
+        raf = requestAnimationFrame(tick);
+        io.disconnect();
+        return () => cancelAnimationFrame(raf);
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -10% 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [end]);
 
   return (
     <span ref={ref}>

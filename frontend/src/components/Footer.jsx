@@ -68,6 +68,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li><Link to="/services" className="text-neutral-300 hover:text-white text-sm">Services</Link></li>
               <li><Link to="/work" className="text-neutral-300 hover:text-white text-sm">Work</Link></li>
+              <li><Link to="/pricing" className="text-neutral-300 hover:text-white text-sm">Pricing</Link></li>
               <li><Link to="/about" className="text-neutral-300 hover:text-white text-sm">About</Link></li>
               <li><Link to="/contact" className="text-neutral-300 hover:text-white text-sm">Contact</Link></li>
             </ul>
@@ -86,7 +87,7 @@ export default function Footer() {
           <div className="md:col-span-3">
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-500 mb-4">Reach</p>
             <ul className="space-y-3 text-sm">
-              <li className="text-neutral-300">ethonislam00@gmail.com</li>
+              <li className="text-neutral-300">info@thynkit.agency</li>
               <li className="text-neutral-500">London · Toronto · Bangladesh</li>
               <li className="flex items-center gap-3 pt-2">
                 <a href="#" data-testid="social-twitter" className="w-9 h-9 grid place-items-center rounded-full border border-white/10 hover:border-[#00E5FF]/60 hover:text-[#00E5FF] transition-colors"><Twitter className="w-4 h-4" /></a>

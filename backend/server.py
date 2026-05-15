@@ -1,9 +1,11 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import time
+from collections import defaultdict
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List, Optional
@@ -22,6 +24,10 @@ db = client[os.environ['DB_NAME']]
 
 app = FastAPI(title="Thynk IT API")
 api_router = APIRouter(prefix="/api")
+
+# In-memory per-IP submission timestamps for rate limiting.
+# (Resets on process restart; sufficient for single-instance deployments.)
+_RATE_BUCKET: dict = defaultdict(list)
 
 
 # ---------- Models ----------
@@ -137,12 +143,27 @@ async def _send_lead_notification(lead: "Lead") -> None:
 
 
 @api_router.post("/leads", response_model=Lead)
-async def create_lead(payload: LeadCreate):
+async def create_lead(payload: LeadCreate, request: Request):
+    # --- Basic anti-spam: per-IP rate limit (5 submissions / 10 min) ---
+    fwd = request.headers.get('x-forwarded-for', '')
+    ip = fwd.split(',')[0].strip() if fwd else (request.client.host if request.client else "anonymous")
+    now = time.time()
+    window = 600  # 10 minutes
+    limit = 5
+    bucket = _RATE_BUCKET[ip]
+    bucket[:] = [t for t in bucket if now - t < window]
+    if len(bucket) >= limit:
+        raise HTTPException(status_code=429, detail="Too many submissions. Please try again later.")
+    bucket.append(now)
+
+    # --- Honeypot: silently accept but drop bot submissions ---
+    # (Reserved for future — a hidden 'website' field on the form will be checked here.)
+
     lead = Lead(**payload.model_dump())
     doc = lead.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
     await db.leads.insert_one(doc)
-    logger.info(f"New lead captured: {lead.email}")
+    logger.info(f"New lead captured: {lead.email} from {ip}")
     await _send_lead_notification(lead)
     return lead
 

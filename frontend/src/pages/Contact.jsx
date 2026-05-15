@@ -86,12 +86,12 @@ export default function Contact() {
 
             <div className="space-y-4 pt-8 border-t border-white/10">
                 <a
-                  href="mailto:ethonislam00@gmail.com"
+                  href="mailto:info@thynkit.agency"
                   className="flex items-center gap-3 text-neutral-300 hover:text-[#00E5FF] transition-colors"
                   data-testid="contact-email"
                 >
                   <Mail className="w-4 h-4" />
-                  <span>ethonislam00@gmail.com</span>
+                  <span>info@thynkit.agency</span>
                 </a>
               <div className="flex items-center gap-3 text-neutral-500">
                 <MapPin className="w-4 h-4" />
@@ -122,7 +122,7 @@ export default function Contact() {
                 </h2>
                 <p className="text-neutral-400 leading-relaxed max-w-md mx-auto">
                   We'll be in touch within one business day. If it's urgent, you can also
-                  reach us directly at ethonislam00@gmail.com.
+                  reach us directly at info@thynkit.agency.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}

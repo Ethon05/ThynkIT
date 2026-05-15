@@ -1,16 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, PlayCircle } from "lucide-react";
+import { ArrowUpRight, Maximize2, PlayCircle, Volume2, VolumeX } from "lucide-react";
 import { Link } from "react-router-dom";
 import { HERO_VIDEO_URL } from "../data/site";
 
 export default function Hero() {
   // Show headline after a short delay so the promo video gets a clear opening beat
   const [showText, setShowText] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const videoRef = useRef(null);
+
   useEffect(() => {
     const t = setTimeout(() => setShowText(true), 1400);
     return () => clearTimeout(t);
   }, []);
+
+  const requestFullscreen = (v) => {
+    // iOS Safari: native player UI via webkitEnterFullscreen on the video element itself
+    if (typeof v.webkitEnterFullscreen === "function") {
+      try {
+        v.webkitEnterFullscreen();
+        return;
+      } catch {
+        /* fall through to standard FS */
+      }
+    }
+    const target = v.parentElement || v;
+    const req =
+      target.requestFullscreen ||
+      target.webkitRequestFullscreen ||
+      target.mozRequestFullScreen ||
+      target.msRequestFullscreen;
+    if (req) req.call(target).catch(() => {});
+  };
+
+  const handleVideoClick = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    // first interaction → unmute, ensure playing, then fullscreen
+    v.muted = false;
+    setMuted(false);
+    const play = v.play();
+    if (play && typeof play.then === "function") {
+      play.catch(() => {});
+    }
+    requestFullscreen(v);
+  };
 
   return (
     <section
@@ -117,16 +152,37 @@ export default function Hero() {
                 </span>
                 <span className="live-dot" />
               </div>
-              <div className="relative aspect-video bg-black">
+              <div className="relative aspect-video bg-black group cursor-pointer">
                 <video
+                  ref={videoRef}
                   autoPlay
                   loop
-                  muted
+                  muted={muted}
                   playsInline
+                  preload="metadata"
+                  poster={`https://drive.google.com/thumbnail?id=1GmHNW2vXhWKtPWSzFVish47VIZF4kFA5&sz=w1600`}
+                  onClick={handleVideoClick}
+                  data-testid="hero-video"
                   className="absolute inset-0 w-full h-full object-cover"
                 >
                   <source src={HERO_VIDEO_URL} type="video/mp4" />
                 </video>
+
+                {/* Sound / fullscreen hint overlay */}
+                <button
+                  type="button"
+                  onClick={handleVideoClick}
+                  data-testid="hero-video-overlay"
+                  className={`absolute bottom-3 right-3 z-10 inline-flex items-center gap-2 px-3 py-2 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[11px] font-mono uppercase tracking-wider text-white transition-opacity ${
+                    muted ? "opacity-100" : "opacity-0 group-hover:opacity-100"
+                  } hover:bg-black/80`}
+                  aria-label={muted ? "Unmute and fullscreen video" : "Toggle fullscreen"}
+                >
+                  {muted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-[#00E5FF]" />}
+                  {muted ? "Tap for sound" : "Fullscreen"}
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </button>
+
                 <div className="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/5" />
               </div>
             </div>
