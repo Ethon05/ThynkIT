@@ -15,6 +15,29 @@ export default function Hero() {
     return () => clearTimeout(t);
   }, []);
 
+  // Explicitly attempt autoplay on mount. iOS Safari, Chrome Android, and
+  // some data-saver modes ignore the autoplay attribute but allow a manual
+  // muted .play() call. This is the standard pattern.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    v.defaultMuted = true;
+    v.setAttribute("muted", "");
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+    tryPlay();
+    // Retry once the video is ready (covers slow-network mobile)
+    v.addEventListener("loadeddata", tryPlay, { once: true });
+    v.addEventListener("canplay", tryPlay, { once: true });
+    return () => {
+      v.removeEventListener("loadeddata", tryPlay);
+      v.removeEventListener("canplay", tryPlay);
+    };
+  }, []);
+
   const requestFullscreen = (v) => {
     // iOS Safari: native player UI via webkitEnterFullscreen on the video element itself
     if (typeof v.webkitEnterFullscreen === "function") {
@@ -157,9 +180,13 @@ export default function Hero() {
                   ref={videoRef}
                   autoPlay
                   loop
-                  muted={muted}
+                  defaultMuted
+                  muted
                   playsInline
-                  preload="metadata"
+                  webkit-playsinline="true"
+                  x5-playsinline="true"
+                  preload="auto"
+                  disablePictureInPicture
                   poster={`https://drive.google.com/thumbnail?id=1GmHNW2vXhWKtPWSzFVish47VIZF4kFA5&sz=w1600`}
                   onClick={handleVideoClick}
                   data-testid="hero-video"

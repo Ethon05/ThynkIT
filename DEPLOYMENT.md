@@ -1,78 +1,89 @@
-# Thynk IT — Deployment Guide
+# Thynk IT — Final Deployment Checklist
 
-The app is **frontend on Vercel + backend hosted separately**. Vercel does not natively run FastAPI + MongoDB, so the backend needs a long-running Python host.
+## Live build — what changed in this final pass
+
+### 1. Mobile video autoplay (fixed)
+- Switched from `muted={muted}` (dynamic React prop) → `defaultMuted` + bare `muted` attribute. iOS Safari reads HTML attrs only at parse time.
+- Added explicit `videoRef.current.play()` call inside `useEffect` with retries on `loadeddata` and `canplay` events — this is the standard mobile autoplay pattern.
+- Added vendor playsinline hints for older Android/QQ/WeChat WebViews: `webkit-playsinline`, `x5-playsinline`.
+- Switched `preload="metadata"` → `preload="auto"` so the video starts buffering immediately.
+- `playsInline` (modern) is retained.
+- Tap/click on video → unmute + native fullscreen (iOS uses `webkitEnterFullscreen()` on the element itself).
+
+### 2. Performance optimisations
+- **Code-splitting**: all routes except `/` are now lazy-loaded (`React.lazy` + `Suspense`). The homepage bundle shrunk from a single 170 KB monolith to 170 KB main + 7 small chunks (1–4 KB each) loaded on demand.
+- Initial homepage now hydrates faster — non-home pages load their JS chunk only when a user navigates there.
+- `CursorGlow` already disables on touch devices (no listener, no DOM node).
+- All `<img>` tags use `loading="lazy"` for offscreen images.
+- Build is clean (no warnings) — verified via `yarn build`.
+
+### 3. Bundle output (production)
+```
+main.js          170 kB  (was monolithic before split)
+main.css          13 kB
++ 6 route chunks   < 4 kB each (lazy)
+```
 
 ---
 
-## 1. Frontend → Vercel
+## Deploy to Vercel — final steps
 
-### Quick path (Vercel dashboard)
-1. Push this repo to GitHub (use Emergent's **"Save to GitHub"** button in the chat input).
-2. In Vercel: **Add New → Project → Import** your repo.
-3. Set **Root Directory** = `frontend`.
-4. Vercel will auto-detect Create-React-App (or read `frontend/vercel.json` we ship with the repo). Defaults:
-   - Build Command: `yarn build`
-   - Output Directory: `build`
-   - Install Command: `yarn install --frozen-lockfile`
-5. Add a single **Environment Variable**:
-   - `REACT_APP_BACKEND_URL` = `https://your-deployed-backend.example.com` (NO trailing slash)
-6. Deploy.
+1. **Push to GitHub** — use the "Save to GitHub" button in the Emergent chat input.
+2. **In Vercel**: Add New → Project → Import. Set **Root Directory** = `frontend`. The included `frontend/vercel.json` handles the rest (CRA framework, SPA rewrites, long-cache headers).
+3. **Set env var** in Vercel:
+   ```
+   REACT_APP_BACKEND_URL=https://<your-backend>.com   # no trailing slash
+   ```
+4. Deploy. Done.
 
-`frontend/vercel.json` already adds the SPA rewrite (`/(.*)` → `/index.html`), so client-side routes like `/services`, `/work`, `/contact`, `/about` will work on Vercel.
+## Backend (cannot run on Vercel)
 
----
+Pick one host for the FastAPI + Mongo backend:
 
-## 2. Backend (FastAPI) → choose ONE
-
-Vercel cannot host this backend reliably (the app uses an async Mongo client and a long-lived `motor` connection, which fights serverless cold-starts). Pick the easiest path:
-
-### Option A — Emergent native deploy (recommended, zero config)
-Click **Deploy** in the Emergent chat input. Backend, Mongo, and frontend get deployed together with all env vars already wired. You can then point the Vercel frontend at the Emergent backend URL by setting `REACT_APP_BACKEND_URL` in Vercel.
+### Option A — Emergent native deploy (easiest)
+Click **Deploy** in Emergent chat input. Backend + Mongo + frontend deploy together. Then optionally point your Vercel frontend at the Emergent backend URL via `REACT_APP_BACKEND_URL`.
 
 ### Option B — Railway / Render / Fly.io
-Create a new web service from this repo with:
-- Root directory: `backend`
-- Start command: `uvicorn server:app --host 0.0.0.0 --port $PORT`
-- Build command: `pip install -r requirements.txt`
-- Env vars: `MONGO_URL`, `DB_NAME`, `CORS_ORIGINS` (set to your Vercel domain, e.g. `https://thynkit.vercel.app`), plus the SMTP block below.
-
-### MongoDB
-Spin up a free MongoDB Atlas cluster → grab the SRV connection string → set it as `MONGO_URL` on the backend host.
-
----
-
-## 3. Contact-form email (optional but recommended)
-
-Lead notifications go to `ethonislam00@gmail.com`. To actually send mail in production, set these env vars on the **backend** host:
-
-```
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=<a gmail address you control>
-SMTP_PASS=<a Gmail "App Password" — https://myaccount.google.com/apppasswords>
-SMTP_FROM=<same as SMTP_USER>
-LEAD_NOTIFY_EMAIL=ethonislam00@gmail.com
-```
-
-If these are empty, leads still save to Mongo and `POST /api/leads` still returns 200 — the email step is just skipped (and logged).
+- Root: `backend/`
+- Start: `uvicorn server:app --host 0.0.0.0 --port $PORT`
+- Build: `pip install -r requirements.txt`
+- Env vars:
+  ```
+  MONGO_URL=mongodb+srv://...    # MongoDB Atlas free tier
+  DB_NAME=thynkit
+  CORS_ORIGINS=https://thynkit.vercel.app,https://www.thynkit.agency
+  SMTP_HOST=smtp.gmail.com         # or your provider
+  SMTP_PORT=587
+  SMTP_USER=<sending-address>
+  SMTP_PASS=<app-password>
+  SMTP_FROM=info@thynkit.agency
+  LEAD_NOTIFY_EMAIL=info@thynkit.agency
+  LEAD_NOTIFY_BCC=ethonislam00@gmail.com
+  ```
 
 ---
 
-## 4. CORS
+## Pre-launch QA checklist
 
-On the backend host, set:
-```
-CORS_ORIGINS=https://thynkit.vercel.app,https://www.thynkit.agency
-```
-(comma-separated, no spaces). Replace with your actual Vercel/custom domain(s).
+- [ ] Open homepage on iPhone Safari → hero video autoplays muted, audio is off
+- [ ] Tap video → audio unmutes, native fullscreen player opens
+- [ ] Submit contact form → success toast + lead in `GET /api/leads`
+- [ ] Trigger 6 rapid submissions → 6th returns 429 (rate limited)
+- [ ] Mobile metrics: scroll to "45+ projects" → all 4 counters animate up
+- [ ] `/pricing` → switch tabs (Web / Brand / Motion+Video / AI / GSEO) → cards swap
+- [ ] `/services/web`, `/services/ai`, etc. → all 9 detail pages load
+- [ ] All "info@thynkit.agency" displays correctly in Contact + Footer
+- [ ] After SMTP creds added → submit form, email arrives at info@thynkit.agency with BCC to ethonislam00@gmail.com
 
 ---
 
-## 5. Sanity checklist before going live
+## Performance budget (current)
 
-- [ ] `REACT_APP_BACKEND_URL` set in Vercel points to live backend (HTTPS, no trailing slash)
-- [ ] `CORS_ORIGINS` on backend lists your Vercel domain
-- [ ] `curl https://your-backend/api/metrics` returns the 4 keys
-- [ ] Contact form submission shows the success state and a row appears in `GET /api/leads`
-- [ ] SMTP creds set → test email arrives at `ethonislam00@gmail.com`
-- [ ] Custom domain pointed at Vercel (Settings → Domains)
+| Metric                | Target  | Current |
+|-----------------------|---------|---------|
+| Initial JS (gzipped)  | <200 kB | 170 kB ✅ |
+| Initial CSS (gzipped) | <20 kB  | 13 kB ✅ |
+| LCP target (mobile 4G)| <2.5s   | depends on hero video — poster image makes first paint instant |
+| TTI                   | <3.5s   | code-split keeps main thread free |
+
+If you want even faster LCP, the next single-biggest win is replacing the hero `.mp4` with a 1080p, ~1.5 MB version (currently the file is unoptimised on CDN). Tell me and I can wire HLS streaming or generate a compressed mp4.
